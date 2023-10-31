@@ -9,7 +9,7 @@ const Product = ({ product }) => {
                 </div>
             </figure>
             <div className="p-5 text-center">
-                <h3 className="font-bold text-2xl mb-2">{product?.name}</h3>
+                <h3 className="font-bold text-2xl mb-1">{product?.name}</h3>
                 <h4 className="text-[19px] text-[#FF3811] font-semibold">Price : ${product?.price}</h4>
                 <div className="rating">
                     {
