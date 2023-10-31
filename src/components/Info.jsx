@@ -18,8 +18,8 @@ const data = [
     {
         "id": 3,
         "icon": location,
-        "title": "Need a repair? our address",
-        "value": "Liza Street, New York"
+        "title": "Need a repair?",
+        "value": "Gulshan, Dhaka"
     }
 ];
 
@@ -28,8 +28,8 @@ const Info = () => {
         <div className="md:container md:mx-auto 2xl:px-0 xl:px-0 lg:px-5 md:px-5 px-5 my-20">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 bg-black text-white py-10">
                 {
-                    data.map(info => <div key={info?.id} className="flex gap-5 justify-center">
-                        <img src={info?.icon} className="block" alt="info-icon" />
+                    data.map(info => <div key={info?.id} className="flex gap-5 px-5 justify-start md:justify-start lg:justify-center xl:justify-center">
+                        <img src={info?.icon} className="block w-10" alt="info-icon" />
                         <div>
                             <p>{info?.title}</p>
                             <h4 className="text-2xl font-semibold">{info?.value}</h4>
