@@ -79,7 +79,7 @@ const Navbar = () => {
                     </label> */}
                     {/* <Link to={!user && "/login"}><button onClick={user && logOut} className="bn632-hover bn19 px-[20px] py-[6px] mr-3">{user ? "LogOut" : "LogIn"}</button></Link> */}
                     {/* <Switch></Switch> */}
-                    <div className="flex gap-5 mr-5">
+                    <div className="2xl:flex xl:flex lg:flex md:flex hidden gap-5 mr-5">
                         <button><img src={cartIcon} alt="icon" /></button>
                         <button><img src={searchIcon} alt="icon" /></button>
                     </div>
