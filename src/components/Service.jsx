@@ -13,7 +13,7 @@ const Service = ({ service }) => {
             <div className="p-5">
                 <h4 className="font-bold text-2xl mb-2">{service?.title}</h4>
                 <div className="flex justify-between mb-1">
-                    <h4 className="text-[19px] text-[#FF3811] font-semibold">Price : $20.00</h4>
+                    <h4 className="text-[19px] text-[#FF3811] font-semibold">Price : ${service?.price}</h4>
                     <Link to={`service/${service?._id}`}><button className="text-[19px] text-[#FF3811] font-semibold">--&gt;</button></Link>
                 </div>
             </div>
