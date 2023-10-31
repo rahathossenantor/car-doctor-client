@@ -1,8 +1,9 @@
 // import { useContext, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+// import { Link, NavLink } from "react-router-dom";
 // import { AuthContext } from "../providers/AuthProvider";
 // import Swal from "sweetalert2";
 // import Switch from "./Switch";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import cartIcon from "../assets/cartIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
@@ -11,13 +12,13 @@ const Navbar = () => {
     // const { user, profileAvatar, setProfileAvatar, signOutUser } = useContext(AuthContext);
 
     const links = <>
-        <NavLink to="/"><li className="text-xl px-3 hover:text-[#FF3811]">Home</li></NavLink>
-        {/* <NavLink to="/about"><li className="text-xl px-3 hover:text-[#FF3811]">About</li></NavLink> */}
-        <NavLink to="/services"><li className="text-xl px-3 hover:text-[#FF3811]">Services</li></NavLink>
-        {/* <NavLink to="/blog"><li className="text-xl px-3 hover:text-[#FF3811]">Blog</li></NavLink> */}
-        {/* <NavLink to="/contact"><li className="text-xl px-3 hover:text-[#FF3811]">Contact</li></NavLink> */}
-        <NavLink to="/login"><li className="text-xl px-3 hover:text-[#FF3811]">Login</li></NavLink>
-        <NavLink to="/register"><li className="text-xl px-3 hover:text-[#FF3811]">Register</li></NavLink>
+        <NavLink to="/"><li className="text-lg px-3 hover:text-[#FF3811]">Home</li></NavLink>
+        {/* <NavLink to="/about"><li className="text-lg px-3 hover:text-[#FF3811]">About</li></NavLink> */}
+        <NavLink to="/services"><li className="text-lg px-3 hover:text-[#FF3811]">Services</li></NavLink>
+        {/* <NavLink to="/blog"><li className="text-lg px-3 hover:text-[#FF3811]">Blog</li></NavLink> */}
+        {/* <NavLink to="/contact"><li className="text-lg px-3 hover:text-[#FF3811]">Contact</li></NavLink> */}
+        <NavLink to="/login"><li className="text-lg px-3 hover:text-[#FF3811]">Login</li></NavLink>
+        <NavLink to="/register"><li className="text-lg px-3 hover:text-[#FF3811]">Register</li></NavLink>
     </>
 
     // logout user
@@ -82,7 +83,8 @@ const Navbar = () => {
                         <button><img src={cartIcon} alt="icon" /></button>
                         <button><img src={searchIcon} alt="icon" /></button>
                     </div>
-                    <button className="btn btn-outline normal-case text-lg text-[#FF3811] border-[#FF3811]">Appointment</button>
+                    {/* <button className="btn btn-outline normal-case text-lg text-[#FF3811] border-[#FF3811]">Appointment</button> */}
+                    <button className="bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:text-white border py-[9px] px-4">Appointment</button>
                 </div>
             </div>
         </nav>
