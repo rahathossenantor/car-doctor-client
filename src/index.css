@@ -12,6 +12,11 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+.banner-bg {
+    background: url("./assets/images/banner/5.jpg") no-repeat center;
+    background-size: cover;
+}
+
 .bn632-hover {
     font-size: 16px;
     font-weight: 600;
