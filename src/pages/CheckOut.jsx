@@ -51,7 +51,7 @@ const CheckOut = () => {
             <Link to="/"><button className="btn normal-case text-lg rounded-none">Back to home</button></Link>
             <div className="border 2xl:p-20 xl:p-20 lg:p-10 md:p-10 p-5 my-10 bg-[#F3F3F3]">
                 <div className="text-center mb-5">
-                    <h2 className="text-4xl font-semibold text-[#374151]">Check Out</h2>
+                    <h2 className="text-4xl font-semibold text-[#374151]">{title}</h2>
                 </div>
                 <form onSubmit={bookService}>
                     {/* first row */}

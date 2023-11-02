@@ -42,7 +42,11 @@ const Navbar = () => {
         {/* <NavLink to="/contact"><li className="text-lg px-3 hover:text-[#FF3811]">Contact</li></NavLink> */}
         {
             user?.email
-                ? <button><li onClick={logOut} className="text-lg px-3 hover:text-[#FF3811]">Log Out</li></button>
+                ? 
+                <>
+                    <NavLink to="/bookings"><li className="text-lg px-3 hover:text-[#FF3811]">Bookings</li></NavLink>
+                    <button><li onClick={logOut} className="text-lg px-3 hover:text-[#FF3811]">Log Out</li></button>
+                </>
                 : <NavLink to="/login"><li className="text-lg px-3 hover:text-[#FF3811]">Login</li></NavLink>
         }
         <NavLink to="/register"><li className="text-lg px-3 hover:text-[#FF3811]">Register</li></NavLink>

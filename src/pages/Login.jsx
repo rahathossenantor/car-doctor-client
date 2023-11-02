@@ -88,8 +88,8 @@ const Login = () => {
                 <div className="w-full lg:w-1/2 xl:w-1/2 flex justify-center items-center">
                     <img src={bgImage} alt="bg-image" className="inline-block" />
                 </div>
-                <div className="w-full lg:w-1/2 xl:w-1/2 flex justify-center">
-                    <form onSubmit={handleEmailPassLogin} className="p-6 w-[400px] bg-base-100 shadow-2xl">
+                <div className="w-full lg:w-1/2 xl:w-1/2 flex flex-col items-center justify-center">
+                    <form onSubmit={handleEmailPassLogin} className="border p-6 w-[350px] md:w-[390px] lg:w-[380px] xl:w-[400px] bg-base-100 shadow-2xl">
                         <div className="text-center mb-5">
                             <h2 className="text-4xl font-medium">Sign In Now!</h2>
                         </div>
@@ -125,11 +125,11 @@ const Login = () => {
                             </div>
                         </div>
                     </form>
+                    {errorStatus && <div>
+                        <p className="text-red-500 text-lg font-medium">{errorStatus}</p>
+                    </div>}
                 </div>
             </div>
-            {errorStatus && <div>
-                <p className="text-red-500 text-lg font-medium">{errorStatus}</p>
-            </div>}
         </div>
     );
 };

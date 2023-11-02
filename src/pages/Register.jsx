@@ -17,10 +17,10 @@ const Register = () => {
         event.preventDefault();
 
         const name = event.target.name.value;
-        const avater = event.target.photoURL.value || "";
         const email = event.target.email.value;
         const pass = event.target.password.value;
         const terms = event.target.terms.checked;
+        console.log(name, email, pass, terms);
 
         // reset error status
         setRrrorStatus("");
@@ -46,8 +46,7 @@ const Register = () => {
         registerUserWithEmailAndPass(email, pass)
             .then(res => {
                 updateProfile(res.user, {
-                    displayName: name,
-                    photoURL: avater
+                    displayName: name
                 })
                     .then(() => {
                         setProfileAvatar(res.user.photoURL);
@@ -105,8 +104,8 @@ const Register = () => {
                 <div className="w-full lg:w-1/2 xl:w-1/2 flex justify-center items-center">
                     <img src={bgImage} alt="bg-image" className="inline-block" />
                 </div>
-                <div className="w-full lg:w-1/2 xl:w-1/2 flex justify-center">
-                    <form onSubmit={handleEmailPassRegister} className="p-6 w-[400px] bg-base-100 shadow-2xl">
+                <div className="w-full lg:w-1/2 xl:w-1/2 flex flex-col items-center justify-center">
+                    <form onSubmit={handleEmailPassRegister} className="border p-6 w-[350px] md:w-[390px] lg:w-[380px] xl:w-[400px] bg-base-100 shadow-2xl">
                         <div className="text-center mb-5">
                             <h2 className="text-4xl font-medium">Sign Up Now!</h2>
                         </div>
@@ -147,11 +146,11 @@ const Register = () => {
                             </div>
                         </div>
                     </form>
+                    {errorStatus && <div>
+                        <p className="text-red-500 text-lg font-medium">{errorStatus}</p>
+                    </div>}
                 </div>
             </div>
-            {errorStatus && <div>
-                <p className="text-red-500 text-lg font-medium">{errorStatus}</p>
-            </div>}
         </div>
     );
 };
