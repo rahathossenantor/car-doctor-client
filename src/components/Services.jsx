@@ -7,7 +7,7 @@ const Services = () => {
     useEffect(() => {
         (async () => {
             try {
-                const res = await fetch("https://raw.githubusercontent.com/ProgrammingHero1/car-doctor-resources/main/services.json");
+                const res = await fetch("http://localhost:5000/services");
                 const data = await res.json();
                 setServices(data);
             }

@@ -1,15 +1,38 @@
-// import { useContext, useEffect } from "react";
+import { useContext } from "react";
 // import { Link, NavLink } from "react-router-dom";
-// import { AuthContext } from "../providers/AuthProvider";
-// import Swal from "sweetalert2";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 // import Switch from "./Switch";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import cartIcon from "../assets/cartIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
 
 const Navbar = () => {
-    // const { user, profileAvatar, setProfileAvatar, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    // logout user
+    const logOut = () => {
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    title: "Success!",
+                    text: "User logged out successfully!",
+                    icon: "success",
+                    confirmButtonText: "Close"
+                });
+                navigate("/");
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: "Error!",
+                    text: err.message,
+                    icon: "error",
+                    confirmButtonText: "Close"
+                });
+            });
+    };
 
     const links = <>
         <NavLink to="/"><li className="text-lg px-3 hover:text-[#FF3811]">Home</li></NavLink>
@@ -17,37 +40,13 @@ const Navbar = () => {
         <NavLink to="/services"><li className="text-lg px-3 hover:text-[#FF3811]">Services</li></NavLink>
         {/* <NavLink to="/blog"><li className="text-lg px-3 hover:text-[#FF3811]">Blog</li></NavLink> */}
         {/* <NavLink to="/contact"><li className="text-lg px-3 hover:text-[#FF3811]">Contact</li></NavLink> */}
-        <NavLink to="/login"><li className="text-lg px-3 hover:text-[#FF3811]">Login</li></NavLink>
+        {
+            user?.email
+                ? <button><li onClick={logOut} className="text-lg px-3 hover:text-[#FF3811]">Log Out</li></button>
+                : <NavLink to="/login"><li className="text-lg px-3 hover:text-[#FF3811]">Login</li></NavLink>
+        }
         <NavLink to="/register"><li className="text-lg px-3 hover:text-[#FF3811]">Register</li></NavLink>
     </>
-
-    // logout user
-    // const logOut = () => {
-    //     signOutUser()
-    //         .then(() => {
-    //             setProfileAvatar(null);
-    //             Swal.fire({
-    //                 title: "Success!",
-    //                 text: "User logged out successfully!",
-    //                 icon: "success",
-    //                 confirmButtonText: "Close"
-    //             });
-    //         })
-    //         .catch(err => {
-    //             Swal.fire({
-    //                 title: "Error!",
-    //                 text: err.message,
-    //                 icon: "error",
-    //                 confirmButtonText: "Close"
-    //             });
-    //         });
-    // };
-
-    // useEffect(() => {
-    //     if (user) {
-    //         setProfileAvatar(user.photoURL);
-    //     }
-    // });
 
     return (
         <nav className="md:container md:mx-auto 2xl:px-0 xl:px-0 lg:px-5 md:px-5 px-5">
@@ -69,21 +68,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {/* <div className="2xl:inline-flex xl:inline-flex lg:hidden md:inline-flex hidden">
-                        <h3 className="mr-2 text-lg font-poppins">{user ? user?.displayName?.length > 10 ? user.displayName.slice(0, 10) : user.displayName : ""}</h3>
-                    </div> */}
-                    {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-2 2xl:inline-flex xl:inline-flex lg:inline-flex md:hidden hidden">
-                        <div className="w-10 rounded-full">
-                            <img src={profileAvatar ? profileAvatar : "https://i.ibb.co/bKkKVMn/user.png"} className="inline-block w-full" />
-                        </div>
-                    </label> */}
-                    {/* <Link to={!user && "/login"}><button onClick={user && logOut} className="bn632-hover bn19 px-[20px] py-[6px] mr-3">{user ? "LogOut" : "LogIn"}</button></Link> */}
-                    {/* <Switch></Switch> */}
                     <div className="2xl:flex xl:flex lg:flex md:flex hidden gap-5 mr-5">
                         <button><img src={cartIcon} alt="icon" /></button>
                         <button><img src={searchIcon} alt="icon" /></button>
                     </div>
-                    {/* <button className="btn btn-outline normal-case text-lg text-[#FF3811] border-[#FF3811]">Appointment</button> */}
                     <button className="bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:text-white border py-[9px] px-4">Appointment</button>
                 </div>
             </div>
