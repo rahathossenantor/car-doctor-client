@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../providers/AuthProvider";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
 import bgImage from "../assets/images/login/login.svg";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
 
@@ -18,7 +18,7 @@ const Login = () => {
         signInUserWithGoogle,
         signInUserWithGitHub,
         signInUserWithEmailAndPass
-    } = useContext(AuthContext);
+    } = useAuth();
 
     const handleEmailPassLogin = (event) => {
         event.preventDefault();
@@ -45,7 +45,6 @@ const Login = () => {
                     confirmButtonText: "Close"
                 });
                 setProfileAvatar(res.user.photoURL);
-                navigate(location?.state ? location.state : "/");
             })
             .catch(err => setRrrorStatus(err.message));
     };

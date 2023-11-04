@@ -1,11 +1,12 @@
-import { useContext } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../providers/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const CheckOut = () => {
     const { service_id, title, img, price } = useLoaderData();
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth();
+    
+    const navigate = useNavigate();
 
     // book new service
     const bookService = async (e) => {
@@ -41,6 +42,7 @@ const CheckOut = () => {
                     confirmButtonText: "Close"
                 });
             }
+            navigate("/");
         } catch (err) {
             console.error(err.message);
         }

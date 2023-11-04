@@ -1,15 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import { useContext, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
 import bgImage from "../assets/images/login/login.svg";
+import useAuth from "../hooks/useAuth";
+import { useState } from "react";
 
 const Register = () => {
     const [isShow, setIsShow] = useState(false);
     const [errorStatus, setRrrorStatus] = useState("");
-    const { setProfileAvatar, registerUserWithEmailAndPass, signInUserWithGoogle, signInUserWithGitHub } = useContext(AuthContext);
+
+    const {
+        setProfileAvatar,
+        registerUserWithEmailAndPass,
+        signInUserWithGoogle,
+        signInUserWithGitHub
+    } = useAuth();
 
     const navigate = useNavigate();
 
@@ -20,7 +26,6 @@ const Register = () => {
         const email = event.target.email.value;
         const pass = event.target.password.value;
         const terms = event.target.terms.checked;
-        console.log(name, email, pass, terms);
 
         // reset error status
         setRrrorStatus("");

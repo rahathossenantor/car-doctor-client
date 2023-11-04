@@ -1,15 +1,13 @@
-import { useContext } from "react";
-// import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
-// import Switch from "./Switch";
+import Switch from "./switch/Switch";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import cartIcon from "../assets/cartIcon.svg";
 import searchIcon from "../assets/searchIcon.svg";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser } = useAuth();
     const navigate = useNavigate();
 
     // logout user
@@ -36,10 +34,6 @@ const Navbar = () => {
 
     const links = <>
         <NavLink to="/"><li className="text-lg px-3 hover:text-[#FF3811]">Home</li></NavLink>
-        {/* <NavLink to="/about"><li className="text-lg px-3 hover:text-[#FF3811]">About</li></NavLink> */}
-        <NavLink to="/services"><li className="text-lg px-3 hover:text-[#FF3811]">Services</li></NavLink>
-        {/* <NavLink to="/blog"><li className="text-lg px-3 hover:text-[#FF3811]">Blog</li></NavLink> */}
-        {/* <NavLink to="/contact"><li className="text-lg px-3 hover:text-[#FF3811]">Contact</li></NavLink> */}
         {
             user?.email
                 ? 
@@ -73,6 +67,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="2xl:flex xl:flex lg:flex md:flex hidden gap-5 mr-5">
+                        <Switch></Switch>
                         <button><img src={cartIcon} alt="icon" /></button>
                         <button><img src={searchIcon} alt="icon" /></button>
                     </div>

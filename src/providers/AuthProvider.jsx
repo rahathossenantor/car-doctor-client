@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { 
+import {
     GithubAuthProvider,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import auth from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -53,10 +54,28 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
+
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
+
+            // request for a jwt token if the user exist
+            if (currentUser) {
+                axios.post("http://localhost:5000/jwt", loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+                    .catch(err => console.error(err.message));
+            } else {
+                axios.post("http://localhost:5000/logout", loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+                    .catch(err => console.error(err.message));
+            }
         });
 
         return () => unSubscribe();
-    }, []);
+    }, [user?.email]);
 
     const contextData = {
         user,

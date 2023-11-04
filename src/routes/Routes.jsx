@@ -8,7 +8,6 @@ import NotFound from "../pages/NotFound";
 import CheckOut from "../pages/CheckOut";
 import Bookings from "../pages/Bookings";
 import PrivateRoutes from "./PrivateRoutes";
-// import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/checkout/:id",
-                element: <CheckOut></CheckOut>,
+                element: <PrivateRoutes><CheckOut></CheckOut></PrivateRoutes>,
                 loader: ({params}) => fetch(`http://localhost:5000/service/${params.id}`)
             },
             {

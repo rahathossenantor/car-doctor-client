@@ -7,7 +7,7 @@ const Services = () => {
     useEffect(() => {
         (async () => {
             try {
-                const res = await fetch("http://localhost:5000/services");
+                const res = await fetch("http://localhost:5000/services", { credentials: "include" });
                 const data = await res.json();
                 setServices(data);
             }
