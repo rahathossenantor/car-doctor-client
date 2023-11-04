@@ -60,13 +60,13 @@ const AuthProvider = ({ children }) => {
 
             // request for a jwt token if the user exist
             if (currentUser) {
-                axios.post("http://localhost:5000/jwt", loggedUser, { withCredentials: true })
+                axios.post("https://cardoctors-server.vercel.app/jwt", loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                     })
                     .catch(err => console.error(err.message));
             } else {
-                axios.post("http://localhost:5000/logout", loggedUser, { withCredentials: true })
+                axios.post("https://cardoctors-server.vercel.app/logout", loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                     })

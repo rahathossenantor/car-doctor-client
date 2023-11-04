@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import BookingCard from "../components/BookingCard";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 const Bookings = () => {
     const [bookings, setBookings] = useState([]);
     const { user } = useAuth();
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const axiosInterceptor = useAxios();
 
+    const url = `/bookings?email=${user?.email}`;
     useEffect(() => {
-        axios.get(url, { withCredentials: true })
+        axiosInterceptor.get(url)
             .then(res => setBookings(res.data))
             .catch(err => console.error(err.message));
-    }, [url]);
+    }, [axiosInterceptor, url]);
 
     const deleteBookedService = (id) => {
         Swal.fire({
@@ -26,7 +27,7 @@ const Bookings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/bookings/${id}`, { method: "DELETE" })
+                fetch(`https://cardoctors-server.vercel.app/bookings/${id}`, { method: "DELETE" })
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);

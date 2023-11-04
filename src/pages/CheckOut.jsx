@@ -26,7 +26,7 @@ const CheckOut = () => {
         };
 
         try {
-            const res = await fetch("http://localhost:5000/bookings", {
+            const res = await fetch("https://cardoctors-server.vercel.app/bookings", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
